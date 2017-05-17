@@ -55,7 +55,7 @@ import com.google.common.base.Throwables;
  *
  * @param <T>
  * 		Implementations of {@code SettingsCore} supply a context-specific enumeration (which extends 
- *		{@code Enum&lt;T&gt;}) to provide the collection of settings needed in this context. This
+ *		{@code Enum<T>}) to provide the collection of settings needed in this context. This
  *		enumeration must implement the {@link SettingsAPI} interface to provide clients with a common
  *		method for retrieving configuration keys and to give the core settings implementation access 
  *		to the constants and default values of the enumeration.
@@ -155,9 +155,9 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
 	 * <b>NOTE</b>: Property values are typically stored in <i>property</i> files.
 	 * 
 	 * @return property list (key and element pairs) as an input stream (may be 'null')
-	 * @see getSettingsPath
-	 * @see getSettingsUrl
-	 * @see getStoredConfig
+	 * @see #getSettingsPath
+	 * @see #getSettingsUrl
+	 * @see #getStoredConfig
 	 */
 	public InputStream getInputStream() {
 		return null;
@@ -167,9 +167,9 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
 	 * Get the URL for a stored property declarations file.
 	 * 
 	 * @return property file URL (may be 'null')
-	 * @see getSettingsPath
-	 * @see getInputStream
-	 * @see getStoredConfig
+	 * @see #getSettingsPath
+	 * @see #getInputStream
+	 * @see #getStoredConfig
 	 */
 	public URL getSettingsUrl() {
 		return null;
@@ -183,9 +183,9 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
 	 * file-based configuration API to locate the specified file.
 	 * 
 	 * @return property file path (may be 'null')
-	 * @see getSettingsUrl
-	 * @see getInputStream
-	 * @see getStoredConfig
+	 * @see #getSettingsUrl
+	 * @see #getInputStream
+	 * @see #getStoredConfig
 	 */
 	public String getSettingsPath() {
 		return null;
@@ -207,13 +207,18 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
 		return defaults;
 	}
 	
+	/**
+	 * Propagate the specified configuration exception if it wasn't caused by a missing file.
+	 * 
+	 * @param thrown configuration exception to be evaluated
+	 */
 	protected void propagateIfNotMissingFile(ConfigurationException thrown) {
 		String message = thrown.getMessage();
 		if ((message != null) && (message.startsWith("Could not locate"))) {
 			// TODO - log warning
 			return;
 		}
-		Throwables.propagate(thrown);
+		throw Throwables.propagate(thrown);
 	}
 	
 	/**
