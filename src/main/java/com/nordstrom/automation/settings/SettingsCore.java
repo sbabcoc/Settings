@@ -142,9 +142,9 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
 	 * Get stored property declarations as a configuration object.
 	 * 
 	 * @return populated {@link Configuration} object (may be 'null')
-	 * @see getSettingsPath
-	 * @see getSettingsUrl
-	 * @see getInputStream
+	 * @see #getSettingsPath
+	 * @see #getSettingsUrl
+	 * @see #getInputStream
 	 */
 	public Configuration getStoredConfig() {
 		return null;
