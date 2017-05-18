@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import org.apache.commons.configuration2.CompositeConfiguration;
 import org.apache.commons.configuration2.Configuration;
@@ -13,6 +14,8 @@ import org.apache.commons.configuration2.PropertiesConfiguration;
 import org.apache.commons.configuration2.SystemConfiguration;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.ex.ConfigurationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Throwables;
 
@@ -62,7 +65,10 @@ import com.google.common.base.Throwables;
  */
 public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends CompositeConfiguration {
 	
+	public static final String PROPS_FILE = "propsFile";
+	
 	private final Class<T> enumClass;
+	private final Logger logger = LoggerFactory.getLogger(getClass());
 	private SystemConfiguration system = new SystemConfiguration();
 	private Configuration properties;
 	private MapConfiguration defaults;
@@ -101,6 +107,7 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
 					properties = configs.properties(url);
 				} catch (ConfigurationException e) {
 					propagateIfNotMissingFile(e);
+					logger.warn("Unable to locate configuration at URL '{}': {}", url, e);
 				}
 			}
 		}
@@ -118,6 +125,7 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
 					properties = configs.properties(path);
 				} catch (ConfigurationException e) {
 					propagateIfNotMissingFile(e);
+					logger.warn("Unable to locate configuration at path '{}': {}", path, e);
 				}
 			}
 		}
@@ -215,10 +223,40 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
 	protected void propagateIfNotMissingFile(ConfigurationException thrown) {
 		String message = thrown.getMessage();
 		if ((message != null) && (message.startsWith("Could not locate"))) {
-			// TODO - log warning
 			return;
 		}
 		throw Throwables.propagate(thrown);
+	}
+	
+	/**
+	 * If a properties file is specified via a System property named {@code propsFile} or the [propsFile] argument, the 
+	 * settings in this file are injected into the System properties collection. Note that existing System properties 
+	 * override property file settings.<br>
+	 * <br>
+	 * <b>NOTE</b>: The strategy employed to locate the specified file is defined by 
+	 * {@link org.apache.commons.configuration2.io.FileLocatorUtils#DEFAULT_LOCATION_STRATEGY DEFAULT_LOCATION_STRATEGY}
+	 * 
+	 * @param propsFile properties file name (may be 'null')
+	 */
+	public static void injectProperties(String propsFile) {
+		String path = System.getProperty(PROPS_FILE);
+		if (path == null) path = propsFile;
+		
+		if (path != null) {
+			try {
+				Configurations configs = new Configurations();
+				PropertiesConfiguration properties = configs.properties(path);
+				Iterator<String> i = properties.getKeys();
+				while (i.hasNext()) {
+					String propName = i.next();
+					if (System.getProperty(propName) == null) {
+						System.setProperty(propName, properties.getString(propName));
+					}
+				}
+			} catch (ConfigurationException e) {
+				LoggerFactory.getLogger(SettingsCore.class).warn("Failure encountered injecting properties from path '{}': {}", path, e);
+			}
+		}
 	}
 	
 	/**
