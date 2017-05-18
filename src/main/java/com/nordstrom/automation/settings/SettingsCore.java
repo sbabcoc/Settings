@@ -107,7 +107,7 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
 					properties = configs.properties(url);
 				} catch (ConfigurationException e) {
 					propagateIfNotMissingFile(e);
-					logger.warn("Unable to locate configuration at URL '{}': {}", url, e);
+					logger.warn("Unable to locate configuration at URL '{}'", url);
 				}
 			}
 		}
@@ -125,7 +125,7 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
 					properties = configs.properties(path);
 				} catch (ConfigurationException e) {
 					propagateIfNotMissingFile(e);
-					logger.warn("Unable to locate configuration at path '{}': {}", path, e);
+					logger.warn("Unable to locate configuration at path '{}'", path);
 				}
 			}
 		}
@@ -254,7 +254,7 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
 					}
 				}
 			} catch (ConfigurationException e) {
-				LoggerFactory.getLogger(SettingsCore.class).warn("Failure encountered injecting properties from path '{}': {}", path, e);
+				LoggerFactory.getLogger(SettingsCore.class).warn("Failure encountered injecting properties from path '{}'", path);
 			}
 		}
 	}
