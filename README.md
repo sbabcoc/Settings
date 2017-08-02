@@ -8,7 +8,7 @@ The **SettingsCore** class extends **CompositeConfiguration**, using the facilit
 2. (optional) Stored properties, typically from a properties file
 3. (optional) Default values, typically specified in the enumeration
 
-### Declaring stored properies
+### Declaring stored properties
 
 To specify stored properties for your configuration, override one of following methods:
 
