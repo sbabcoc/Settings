@@ -12,7 +12,7 @@ The **SettingsCore** class extends **CompositeConfiguration**, using the facilit
 
 To specify stored properties for your configuration, override one of following methods:
 
-* **`getStoredConfig`** - Your implementation returns a populated Configuration object.
+* **`getStoredConfig`** - Your implementation returns a populated **Configuration** object.
 * **`getInputStream`** - Your implementation returns an input stream supplying key/value pairs.
 * **`getSettingsUrl`** - Your implementation returns the URL from which to load your settings.
 * **`getSettingsPath`** - Your implementation returns the path from which to load your settings.
