@@ -5,7 +5,7 @@ import org.apache.commons.configuration2.ex.ConfigurationException;
 
 public class NarfConfig extends SettingsCore<NarfConfig.NarfSettings> {
 	
-	private static final String SETTINGS_FILE = "settings.properties";
+	private static final String SETTINGS_FILE = "narf.properties";
 
 	public NarfConfig() throws ConfigurationException, IOException {
 		super(NarfSettings.class);
