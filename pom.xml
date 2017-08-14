@@ -17,6 +17,7 @@
     <commons-lang3.version>3.5</commons-lang3.version>
     <commons-config.version>2.1.1</commons-config.version>
     <commons-beanutils.version>1.9.3</commons-beanutils.version>
+    <sonar.language>java</sonar.language>
   </properties>
 
   <dependencyManagement>
