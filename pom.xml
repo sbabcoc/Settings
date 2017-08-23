@@ -18,6 +18,7 @@
     <commons-config.version>2.1.1</commons-config.version>
     <commons-beanutils.version>1.9.3</commons-beanutils.version>
     <sonar.language>java</sonar.language>
+    <jacoco.version>0.7.9</jacoco.version>
   </properties>
 
   <dependencyManagement>
@@ -75,9 +76,32 @@
             <target>1.8</target>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${jacoco.version}</version>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
