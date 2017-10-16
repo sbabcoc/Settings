@@ -9,7 +9,10 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <automation-framework-core.version>0.3.0.0</automation-framework-core.version>
+    <logback.version>1.2.2</logback.version>
+    <slf4j.version>1.7.25</slf4j.version>
+    <testng.version>6.10</testng.version>
+    <common.version>1.1.0.0</common.version>
     <compiler-plugin.version>3.6.0</compiler-plugin.version>
     <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
     <javadoc-plugin.version>2.10.4</javadoc-plugin.version>
@@ -23,6 +26,31 @@
 
   <dependencyManagement>
     <dependencies>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.testng</groupId>
+        <artifactId>testng</artifactId>
+        <version>${testng.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.nordstrom.test-automation.tools</groupId>
+        <artifactId>common</artifactId>
+        <version>${common.version}</version>
+      </dependency>
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-lang3</artifactId>
@@ -38,14 +66,30 @@
         <artifactId>commons-beanutils</artifactId>
         <version>${commons-beanutils.version}</version>
       </dependency>
-      <dependency>
-        <groupId>com.nordstrom.test-automation.tools</groupId>
-        <artifactId>automation-framework-core</artifactId>
-        <version>${automation-framework-core.version}</version>
-      </dependency>
     </dependencies>
   </dependencyManagement>
   <dependencies>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.nordstrom.test-automation.tools</groupId>
+      <artifactId>common</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
@@ -57,10 +101,6 @@
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.nordstrom.test-automation.tools</groupId>
-      <artifactId>automation-framework-core</artifactId>
     </dependency>
   </dependencies>
 
