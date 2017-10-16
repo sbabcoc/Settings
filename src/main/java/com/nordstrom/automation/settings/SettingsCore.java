@@ -17,7 +17,7 @@ import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.base.Throwables;
+import com.nordstrom.common.base.UncheckedThrow;
 
 /**
  * This class extends {@link CompositeConfiguration}, using the facilities provided by this class to
@@ -225,7 +225,7 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
         if ((message != null) && (message.startsWith("Could not locate"))) {
             return;
         }
-        throw Throwables.propagate(thrown);
+        throw UncheckedThrow.throwUnchecked(thrown);
     }
     
     /**
