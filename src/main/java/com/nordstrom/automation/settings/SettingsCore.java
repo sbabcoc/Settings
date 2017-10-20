@@ -14,6 +14,7 @@ import org.apache.commons.configuration2.PropertiesConfiguration;
 import org.apache.commons.configuration2.SystemConfiguration;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.ex.ConfigurationException;
+import org.apache.commons.configuration2.io.FileLocatorUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,9 +41,11 @@ import com.nordstrom.common.base.UncheckedThrow;
  * 
  * <b>NOTE</b>: These methods are listed in order of evaluation, stopping at the first non-null response.<br>
  * <b>NOTE</b>: Typical implementations override {@link #getSettingsPath}, which will support most scenarios.<br>
- * <b>NOTE</b>: Stored properties are declared in Apache's extended syntax. See {@link PropertiesConfiguration} for details.<br>
- * <b>NOTE</b>: By overriding the {@link #getStoredConfig} method, you're able to incorporate any arbitrary 
- * {@link Configuration} object you need into your settings - including another {@link CompositeConfiguration} object.<br>
+ * <b>NOTE</b>: Stored properties are declared in Apache's extended syntax. See {@link PropertiesConfiguration} for
+ *              details.<br>
+ * <b>NOTE</b>: By overriding the {@link #getStoredConfig} method, you're able to incorporate any arbitrary {@link
+ *              Configuration} object you need into your settings - including another {@link CompositeConfiguration}
+ *              object.<br>
  * <br>
  * Two methods have been provided for you to supply default values for your configuration:<br>
  * <br> 
@@ -54,7 +57,7 @@ import com.nordstrom.common.base.UncheckedThrow;
  * </ul>
  * 
  * <b>NOTE</b>: For settings collections with no default values, you can eliminate unnecessary processing in 
- * the core API by overriding {@link #getDefaults} with a method that simply returns 'null'.
+ *              the core API by overriding {@link #getDefaults} with a method that simply returns 'null'.
  *
  * @param <T>
  *     Implementations of {@code SettingsCore} supply a context-specific enumeration (which extends 
@@ -192,10 +195,9 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
     
     /**
      * Get the path to a stored property declarations file.<br>
-     * <b>NOTE</b>: The returned path can be absolute, relative, or a simple filename. See
-     * {@link org.apache.commons.configuration2.io.FileLocatorUtils#DEFAULT_LOCATION_STRATEGY 
-     * DEFAULT_LOCATION_STRATEGY} for details of the strategy employed by the underlying 
-     * file-based configuration API to locate the specified file.
+     * <b>NOTE</b>: The returned path can be absolute, relative, or a simple filename.
+     *              See {@link FileLocatorUtils#DEFAULT_LOCATION_STRATEGY DEFAULT_LOCATION_STRATEGY} for details of
+     *              the strategy employed by the underlying file-based configuration API to locate the specified file.
      * 
      * @return property file path (may be 'null')
      * @see #getSettingsUrl
@@ -236,12 +238,12 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
     }
     
     /**
-     * If a properties file is specified via a System property named {@code propsFile} or the [propsFile] argument, the 
-     * settings in this file are injected into the System properties collection. Note that existing System properties 
+     * If a properties file is specified via a System property named {@code propsFile} or the [propsFile] argument, the
+     * settings in this file are injected into the System properties collection. Note that existing System properties
      * override property file settings.<br>
      * <br>
-     * <b>NOTE</b>: The strategy employed to locate the specified file is defined by 
-     * {@link org.apache.commons.configuration2.io.FileLocatorUtils#DEFAULT_LOCATION_STRATEGY DEFAULT_LOCATION_STRATEGY}
+     * <b>NOTE</b>: The strategy employed to locate the specified file is defined by
+     *              {@link FileLocatorUtils#DEFAULT_LOCATION_STRATEGY DEFAULT_LOCATION_STRATEGY}
      * 
      * @param propsFile properties file name (may be 'null')
      */
