@@ -32,10 +32,10 @@ import com.nordstrom.common.base.UncheckedThrow;
  * To specify stored properties for your configuration, override one of following methods:<br>
  * <br>
  * <ul>
- *         <li>{@link #getStoredConfig} - Your implementation returns a populated {@link Configuration} object.</li>
- *         <li>{@link #getInputStream} - Your implementation returns an input stream supplying key/value pairs.</li>
- *         <li>{@link #getSettingsUrl} - Your implementation returns the URL from which to load your settings.</li>
- *         <li>{@link #getSettingsPath} - Your implementation returns the path from which to load your settings.</li>
+ *     <li>{@link #getStoredConfig} - Your implementation returns a populated {@link Configuration} object.</li>
+ *     <li>{@link #getInputStream} - Your implementation returns an input stream supplying key/value pairs.</li>
+ *     <li>{@link #getSettingsUrl} - Your implementation returns the URL from which to load your settings.</li>
+ *     <li>{@link #getSettingsPath} - Your implementation returns the path from which to load your settings.</li>
  * </ul>
  * 
  * <b>NOTE</b>: These methods are listed in order of evaluation, stopping at the first non-null response.<br>
@@ -47,21 +47,21 @@ import com.nordstrom.common.base.UncheckedThrow;
  * Two methods have been provided for you to supply default values for your configuration:<br>
  * <br> 
  * <ul>
- *         <li>Specify default values as arguments of the constant declarations in your settings enumeration 
- *             and override the {@link SettingsAPI#val} method. Specifying 'null' for a setting's default value 
- *             indicates that no default exists.</li>
- *        <li>Alternatively, you can override the {@link #getDefaults} method with your own implementation.</li>
- *  </ul>
+ *     <li>Specify default values as arguments of the constant declarations in your settings enumeration 
+ *         and override the {@link SettingsAPI#val} method. Specifying 'null' for a setting's default value 
+ *         indicates that no default exists.</li>
+ *     <li>Alternatively, you can override the {@link #getDefaults} method with your own implementation.</li>
+ * </ul>
  * 
  * <b>NOTE</b>: For settings collections with no default values, you can eliminate unnecessary processing in 
  * the core API by overriding {@link #getDefaults} with a method that simply returns 'null'.
  *
  * @param <T>
- *         Implementations of {@code SettingsCore} supply a context-specific enumeration (which extends 
- *        {@code Enum<T>}) to provide the collection of settings needed in this context. This
- *        enumeration must implement the {@link SettingsAPI} interface to provide clients with a common
- *        method for retrieving configuration keys and to give the core settings implementation access 
- *        to the constants and default values of the enumeration.
+ *     Implementations of {@code SettingsCore} supply a context-specific enumeration (which extends 
+ *     {@code Enum<T>}) to provide the collection of settings needed in this context. This
+ *     enumeration must implement the {@link SettingsAPI} interface to provide clients with a common
+ *     method for retrieving configuration keys and to give the core settings implementation access 
+ *     to the constants and default values of the enumeration.
  */
 public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends CompositeConfiguration {
     
@@ -73,6 +73,13 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
     private Configuration properties;
     private MapConfiguration defaults;
     
+    /**
+     * Instantiate a configuration object for the specified enumeration class.
+     * 
+     * @param enumClass enumeration class from which to construct the configuration
+     * @throws ConfigurationException If a failure is encountered while initializing this configuration object.
+     * @throws IOException If a failure is encountered while reading from a configuration input stream.
+     */
     public SettingsCore(Class<T> enumClass) throws ConfigurationException, IOException {
         // save enumeration class
         this.enumClass = enumClass;
@@ -90,7 +97,7 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
             if (inputStream != null) {
                 // get properties from input stream
                 properties = new PropertiesConfiguration();
-                ((PropertiesConfiguration) properties).read(new InputStreamReader(inputStream));
+                ((PropertiesConfiguration) properties).read(new InputStreamReader(inputStream, "UTF-8"));
             }
         }
         
@@ -206,13 +213,13 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
      * @return defined system property default values (may be 'null')
      */
     protected Map<String, String> getDefaults() {
-        Map<String, String> defaults = new HashMap<>();
+        Map<String, String> defaultsMap = new HashMap<>();
         for (SettingsAPI setting : enumClass.getEnumConstants()) {
             if (setting.val() != null) {
-                defaults.put(setting.key(), setting.val());
+                defaultsMap.put(setting.key(), setting.val());
             }
         }
-        return defaults;
+        return defaultsMap;
     }
     
     /**
@@ -240,7 +247,9 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
      */
     public static void injectProperties(String propsFile) {
         String path = System.getProperty(PROPS_FILE);
-        if (path == null) path = propsFile;
+        if (path == null) {
+            path = propsFile;
+        }
         
         if (path != null) {
             try {
@@ -254,7 +263,8 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
                     }
                 }
             } catch (ConfigurationException e) {
-                LoggerFactory.getLogger(SettingsCore.class).warn("Failure encountered injecting properties from path '{}'", path);
+                LoggerFactory.getLogger(SettingsCore.class)
+                        .warn("Failure encountered injecting properties from path '{}'", path);
             }
         }
     }
