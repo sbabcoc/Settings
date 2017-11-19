@@ -36,8 +36,8 @@
   </properties>
 
   <scm>
-    <connection>scm:git:git@github.com:Nordstrom/settings.git</connection>
-    <developerConnection>scm:git:git@github.com:Nordstrom/settings.git</developerConnection>
+    <connection>scm:git:https://github.com:Nordstrom/settings.git</connection>
+    <developerConnection>scm:git:https://github.com:Nordstrom/settings.git</developerConnection>
     <url>https://github.com/Nordstrom/settings/tree/master</url>
     <tag>settings-2.0.3</tag>
   </scm>
