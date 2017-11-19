@@ -1,3 +1,5 @@
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.nordstrom.test-automation.tools/settings/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.nordstrom.test-automation.tools/settings)
+
 # SettingsCore
 
 ### Composition of configurations
