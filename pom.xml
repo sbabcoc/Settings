@@ -16,6 +16,15 @@
     </license>
   </licenses>
 
+  <developers>
+    <developer>
+      <name>Scott Babcock</name>
+      <email>scoba@hotmail.com</email>
+      <organization>Nordstrom</organization>
+      <organizationUrl>https://shop.nordstrom.com</organizationUrl>
+    </developer>
+  </developers>
+  
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <logback.version>1.2.2</logback.version>
