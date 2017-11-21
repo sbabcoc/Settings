@@ -7,7 +7,7 @@
 
   <name>Settings API</name>
   <description>Core implementation and interfaces for defining context-specific settings</description>
-  <url>https://github.com/Nordstrom/settings</url>
+  <url>https://github.com/Nordstrom/Settings</url>
 
   <licenses>
     <license>
