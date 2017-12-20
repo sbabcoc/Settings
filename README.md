@@ -4,7 +4,7 @@
 
 ### Composition of configurations
 
-The **SettingsCore** class extends **CompositeConfiguration**, using the facilities provided by this class to produce an aggregated configuration from three sources in the following order of precedence: 
+The **SettingsCore** class extends [CompositeConfiguration](https://commons.apache.org/proper/commons-configuration/apidocs/org/apache/commons/configuration2/CompositeConfiguration.html), using the facilities provided by this class to produce an aggregated configuration from three sources in the following order of precedence: 
 
 1. System properties
 2. (optional) Stored properties, typically from a properties file
@@ -14,15 +14,15 @@ The **SettingsCore** class extends **CompositeConfiguration**, using the facilit
 
 To specify stored properties for your configuration, override one of following methods:
 
-* **`getStoredConfig`** - Your implementation returns a populated **Configuration** object.
+* **`getStoredConfig`** - Your implementation returns a populated [Configuration](https://commons.apache.org/proper/commons-configuration/apidocs/org/apache/commons/configuration2/Configuration.html) object.
 * **`getInputStream`** - Your implementation returns an input stream supplying key/value pairs.
 * **`getSettingsUrl`** - Your implementation returns the URL from which to load your settings.
 * **`getSettingsPath`** - Your implementation returns the path from which to load your settings.
 
-> **NOTE**: These methods are listed in order of evaluation, stopping at the first non-null response.  
+> **NOTE**: These methods are listed in order of evaluation, which stops at the first non-null response.  
 > **NOTE**: Typical implementations override **`getSettingsPath`**, which will support most scenarios.  
-> **NOTE**: Stored properties are declared in Apache's extended syntax. See **PropertiesConfiguration** for details.  
-> **NOTE**: By overriding the **`getStoredConfig`** method, you're able to incorporate any arbitrary **Configuration** object you need into your settings - including another **CompositeConfiguration** object.
+> **NOTE**: Stored properties are declared in Apache's extended syntax. See [PropertiesConfiguration](https://commons.apache.org/proper/commons-configuration/apidocs/org/apache/commons/configuration2/PropertiesConfiguration.html) for details.  
+> **NOTE**: By overriding the **`getStoredConfig`** method, you're able to incorporate any arbitrary [Configuration](https://commons.apache.org/proper/commons-configuration/apidocs/org/apache/commons/configuration2/Configuration.html) object you need into your settings - including another [CompositeConfiguration](https://commons.apache.org/proper/commons-configuration/apidocs/org/apache/commons/configuration2/CompositeConfiguration.html) object.
 
 ### Specifying default values
 
