@@ -3,7 +3,7 @@ package com.nordstrom.automation.settings;
 import java.io.IOException;
 import java.util.Map;
 
-import org.apache.commons.configuration2.ex.ConfigurationException;
+import org.apache.commons.configuration.ConfigurationException;
 
 public class SetsConfig extends SettingsCore<SetsConfig.SetsSettings> {
 
@@ -37,7 +37,7 @@ public class SetsConfig extends SettingsCore<SetsConfig.SetsSettings> {
 	}
 
 	@Override
-	public Map<String, String> getDefaults() {
+	public Map<String, Object> getDefaults() {
 		return null;
 	}
 }
