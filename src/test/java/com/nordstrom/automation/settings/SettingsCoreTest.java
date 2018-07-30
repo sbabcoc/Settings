@@ -3,7 +3,7 @@ package com.nordstrom.automation.settings;
 import static org.testng.Assert.assertEquals;
 import java.io.IOException;
 
-import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.testng.annotations.Test;
 import com.nordstrom.automation.settings.NarfConfig.NarfSettings;
 import com.nordstrom.automation.settings.SetsConfig.SetsSettings;

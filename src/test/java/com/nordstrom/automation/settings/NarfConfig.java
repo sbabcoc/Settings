@@ -2,7 +2,8 @@ package com.nordstrom.automation.settings;
 
 import java.io.IOException;
 
-import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration2.ex.ConfigurationException;
+
 
 public class NarfConfig extends SettingsCore<NarfConfig.NarfSettings> {
 	
