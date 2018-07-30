@@ -228,7 +228,7 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
      */
     protected void propagateIfNotMissingFile(ConfigurationException thrown) {
         String message = thrown.getMessage();
-        if ((message != null) && (message.startsWith("Could not locate"))) {
+        if ((message != null) && (message.contains("not locate"))) {
             return;
         }
         throw UncheckedThrow.throwUnchecked(thrown);
