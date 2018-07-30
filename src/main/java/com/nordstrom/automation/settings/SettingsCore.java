@@ -7,12 +7,14 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import org.apache.commons.configuration.CompositeConfiguration;
-import org.apache.commons.configuration.Configuration;
-import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.MapConfiguration;
-import org.apache.commons.configuration.PropertiesConfiguration;
-import org.apache.commons.configuration.SystemConfiguration;
+
+import org.apache.commons.configuration2.CompositeConfiguration;
+import org.apache.commons.configuration2.Configuration;
+import org.apache.commons.configuration2.MapConfiguration;
+import org.apache.commons.configuration2.PropertiesConfiguration;
+import org.apache.commons.configuration2.SystemConfiguration;
+import org.apache.commons.configuration2.builder.fluent.Configurations;
+import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -98,7 +100,7 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
             if (inputStream != null) {
                 // get properties from input stream
                 properties = new PropertiesConfiguration();
-                ((PropertiesConfiguration) properties).load(new InputStreamReader(inputStream, "UTF-8"));
+                ((PropertiesConfiguration) properties).read(new InputStreamReader(inputStream, "UTF-8"));
             }
         }
         
@@ -108,9 +110,11 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
             URL url = getSettingsUrl();
             // if setting URL provided
             if (url != null) {
+                Configurations configs;
                 try {
                     // get properties from URL
-                    properties = new PropertiesConfiguration(url);
+                    configs = new Configurations();
+                    properties = configs.properties(url);
                 } catch (ConfigurationException e) {
                     propagateIfNotMissingFile(e);
                     logger.warn("Unable to locate configuration at URL '{}'", url);
@@ -124,9 +128,11 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
             String path = getSettingsPath();
             // if settings file path provided
             if (path != null) {
+                Configurations configs;
                 try {
                     // get properties from file path
-                    properties = new PropertiesConfiguration(path);
+                    configs = new Configurations();
+                    properties = configs.properties(path);
                 } catch (ConfigurationException e) {
                     propagateIfNotMissingFile(e);
                     logger.warn("Unable to locate configuration at path '{}'", path);
@@ -141,7 +147,7 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
         }
         
         // get enumeration default values
-        Map<String, Object> defaultsMap = getDefaults();
+        Map<String, String> defaultsMap = getDefaults();
         // if populated default values collection provided
         if ( ! ((defaultsMap == null) || (defaultsMap.isEmpty()))) {
             // add enumeration default values
@@ -191,10 +197,8 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
      * Get the path to a stored property declarations file.
      * <p>
      * <b>NOTE</b>: The returned path can be absolute, relative, or a simple filename.
-     *     The documentation for <b>Apache Commons Configuration</b> describes the strategy employed to locate the
-     *     specified file. Details can be found under the sub-heading <b>Specifying the file</b> on a page titled:
-     *     <a href="https://commons.apache.org/proper/commons-configuration/userguide_v1.10/howto_filebased.html">
-     *     File-base Configurations</a>
+     *              See {@link FileLocatorUtils#DEFAULT_LOCATION_STRATEGY DEFAULT_LOCATION_STRATEGY} for details of
+     *              the strategy employed by the underlying file-based configuration API to locate the specified file.
      * 
      * @return property file path (may be 'null')
      * @see #getSettingsUrl
@@ -211,8 +215,8 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
      * 
      * @return defined system property default values (may be 'null')
      */
-    protected Map<String, Object> getDefaults() {
-        Map<String, Object> defaultsMap = new HashMap<>();
+    protected Map<String, String> getDefaults() {
+        Map<String, String> defaultsMap = new HashMap<>();
         for (SettingsAPI setting : enumClass.getEnumConstants()) {
             if (setting.val() != null) {
                 defaultsMap.put(setting.key(), setting.val());
@@ -239,10 +243,8 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
      * settings in this file are injected into the System properties collection. Note that existing System properties
      * override property file settings.<br>
      * <br>
-     * <b>NOTE</b>: The documentation for <b>Apache Commons Configuration</b> describes the strategy employed to locate
-     *     the specified file. Details can be found under the sub-heading <b>Specifying the file</b> on a page titled:
-     *     <a href="https://commons.apache.org/proper/commons-configuration/userguide_v1.10/howto_filebased.html">
-     *     File-base Configurations</a>
+     * <b>NOTE</b>: The strategy employed to locate the specified file is defined by
+     *              {@link FileLocatorUtils#DEFAULT_LOCATION_STRATEGY DEFAULT_LOCATION_STRATEGY}
      * 
      * @param propsFile properties file name (may be 'null')
      */
@@ -254,7 +256,8 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
         
         if (path != null) {
             try {
-                PropertiesConfiguration properties = new PropertiesConfiguration(path);
+                Configurations configs = new Configurations();
+                PropertiesConfiguration properties = configs.properties(path);
                 Iterator<String> i = properties.getKeys();
                 while (i.hasNext()) {
                     String propName = i.next();
