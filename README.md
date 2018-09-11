@@ -1,4 +1,4 @@
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.nordstrom.tools/settings/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.nordstrom.tools/settings)
+[![Maven Central](https://img.shields.io/maven-central/v/com.nordstrom.tools/settings.svg)](https://mvnrepository.com/artifact/com.nordstrom.tools/settings)
 
 # SettingsCore
 
