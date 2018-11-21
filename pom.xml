@@ -32,7 +32,7 @@
     <logback.version>1.2.2</logback.version>
     <slf4j.version>1.7.25</slf4j.version>
     <testng.version>6.10</testng.version>
-    <java-utils.version>1.7.2</java-utils.version>
+    <java-utils.version>1.7.3</java-utils.version>
     <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
     <javadoc-plugin.version>2.10.4</javadoc-plugin.version>
     <gpg-plugin.version>1.6</gpg-plugin.version>
