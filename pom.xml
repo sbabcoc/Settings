@@ -29,20 +29,20 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <logback.version>1.2.2</logback.version>
+    <logback.version>1.2.3</logback.version>
     <slf4j.version>1.7.25</slf4j.version>
     <testng.version>6.10</testng.version>
-    <java-utils.version>1.7.3</java-utils.version>
+    <java-utils.version>1.8.0</java-utils.version>
     <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
-    <javadoc-plugin.version>2.10.4</javadoc-plugin.version>
+    <javadoc-plugin.version>3.0.1</javadoc-plugin.version>
     <gpg-plugin.version>1.6</gpg-plugin.version>
-    <staging-plugin.version>1.6.7</staging-plugin.version>
+    <staging-plugin.version>1.6.8</staging-plugin.version>
     <release-plugin.version>2.5.3</release-plugin.version>
-    <commons-lang3.version>3.5</commons-lang3.version>
-    <commons-config.version>2.2</commons-config.version>
+    <commons-lang3.version>3.7</commons-lang3.version>
+    <commons-config.version>2.4</commons-config.version>
     <commons-beanutils.version>1.9.3</commons-beanutils.version>
     <sonar.language>java</sonar.language>
-    <jacoco.version>0.7.9</jacoco.version>
+    <jacoco.version>0.8.2</jacoco.version>
     <skipSigning>true</skipSigning>
   </properties>
 
