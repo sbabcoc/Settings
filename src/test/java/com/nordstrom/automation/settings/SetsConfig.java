@@ -29,6 +29,11 @@ public class SetsConfig extends SettingsCore<SetsConfig.SetsSettings> {
 		public String key() {
 			return propertyName;
 		}
+		
+		@Override
+		public String val() {
+			return null;
+		}
 	}
 	
 	@Override

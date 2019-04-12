@@ -295,9 +295,7 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
          * 
          * @return configuration setting default value; 'null' if none exists
          */
-        default String val() {
-            return null;
-        }
+        String val();
     }
     
 }
