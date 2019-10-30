@@ -41,7 +41,7 @@
     <release-plugin.version>2.5.3</release-plugin.version>
     <commons-lang3.version>3.7</commons-lang3.version>
     <commons-config.version>2.3</commons-config.version>
-    <commons-beanutils.version>1.9.3</commons-beanutils.version>
+    <commons-beanutils.version>1.9.4</commons-beanutils.version>
     <sonar.language>java</sonar.language>
     <jacoco.version>0.8.2</jacoco.version>
     <skipSigning>true</skipSigning>
