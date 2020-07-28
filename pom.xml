@@ -40,7 +40,7 @@
     <staging-plugin.version>1.6.8</staging-plugin.version>
     <release-plugin.version>2.5.3</release-plugin.version>
     <commons-lang3.version>3.8.1</commons-lang3.version>
-    <commons-config.version>2.3</commons-config.version>
+    <commons-config.version>2.7</commons-config.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
     <snakeyaml.version>1.26</snakeyaml.version>
     <sonar.language>java</sonar.language>
