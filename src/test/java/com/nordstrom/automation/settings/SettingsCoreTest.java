@@ -1,10 +1,13 @@
 package com.nordstrom.automation.settings;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
 
 import org.apache.commons.configuration2.ex.ConfigurationException;
-import org.testng.annotations.Test;
+import org.junit.Test;
+
 import com.nordstrom.automation.settings.NarfConfig.NarfSettings;
 import com.nordstrom.automation.settings.SetsConfig.SetsSettings;
 
@@ -30,13 +33,13 @@ public class SettingsCoreTest {
 		
 		NarfConfig config = new NarfConfig();
 		
-		assertEquals(config.getString(NarfSettings.STRING_SYSTEM.key()), STRING_SYSTEM, "Incorrect system string value");
-		assertEquals(config.getString(NarfSettings.STRING_STORED.key()), STRING_STORED, "Incorrect stored string value");
-		assertEquals(config.getString(NarfSettings.STRING_DEFAULT.key()), STRING_DEFAULT, "Incorrect default string value");
-		assertEquals(config.getInt(NarfSettings.INTEGER_SYSTEM.key()), INTEGER_SYSTEM, "Incorrect system integer value");
-		assertEquals(config.getInt(NarfSettings.INTEGER_STORED.key()), INTEGER_STORED, "Incorrect stored integer value");
-		assertEquals(config.getInt(NarfSettings.INTEGER_DEFAULT.key()), INTEGER_DEFAULT, "Incorrect default integer value");
-		assertEquals(config.getStringArray(NarfSettings.MULTIPLE_ENTRY.key()), STRING_ARRAY, "Incorrect string array value");
+		assertEquals("Incorrect system string value", STRING_SYSTEM, config.getString(NarfSettings.STRING_SYSTEM.key()));
+		assertEquals("Incorrect stored string value", STRING_STORED, config.getString(NarfSettings.STRING_STORED.key()));
+		assertEquals("Incorrect default string value", STRING_DEFAULT, config.getString(NarfSettings.STRING_DEFAULT.key()));
+		assertEquals("Incorrect system integer value", INTEGER_SYSTEM, config.getInt(NarfSettings.INTEGER_SYSTEM.key()));
+		assertEquals("Incorrect stored integer value", INTEGER_STORED, config.getInt(NarfSettings.INTEGER_STORED.key()));
+		assertEquals("Incorrect default integer value", INTEGER_DEFAULT, config.getInt(NarfSettings.INTEGER_DEFAULT.key()));
+		assertArrayEquals("Incorrect string array value", STRING_ARRAY, config.getStringArray(NarfSettings.MULTIPLE_ENTRY.key()));
 	}
 	
 	@Test
@@ -45,8 +48,8 @@ public class SettingsCoreTest {
 		
 		SetsConfig config = new SetsConfig();
 		
-		assertEquals(config.getString(SetsSettings.INCLUDE_NAME.key()), SET1, "Incorrect 'include' name");
-		assertEquals(config.getString(SetsSettings.FIRST_KEY.key()), FIRST_ONE, "Incorrect included value");
+		assertEquals("Incorrect 'include' name", SET1, config.getString(SetsSettings.INCLUDE_NAME.key()));
+		assertEquals("Incorrect included value", FIRST_ONE, config.getString(SetsSettings.FIRST_KEY.key()));
 	}
 	
 	@Test
@@ -55,7 +58,7 @@ public class SettingsCoreTest {
 		
 		SetsConfig config = new SetsConfig();
 		
-		assertEquals(config.getString(SetsSettings.INCLUDE_NAME.key()), SET2, "Incorrect 'include' name");
-		assertEquals(config.getString(SetsSettings.FIRST_KEY.key()), FIRST_TWO, "Incorrect included value");
+		assertEquals("Incorrect 'include' name", SET2, config.getString(SetsSettings.INCLUDE_NAME.key()));
+		assertEquals("Incorrect included value", FIRST_TWO, config.getString(SetsSettings.FIRST_KEY.key()));
 	}
 }
