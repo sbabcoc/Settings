@@ -27,24 +27,24 @@
   
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.release>7</maven.compiler.release>
     <logback.version>1.2.3</logback.version>
     <slf4j.version>1.7.30</slf4j.version>
-    <testng.version>6.10</testng.version>
+    <junit.version>4.13.2</junit.version>
     <java-utils.version>2.0.0</java-utils.version>
-    <toolchains-plugin.version>3.0.0</toolchains-plugin.version>
-    <maven-source-plugin.version>3.2.0</maven-source-plugin.version>
-    <javadoc-plugin.version>3.1.1</javadoc-plugin.version>
-    <gpg-plugin.version>1.6</gpg-plugin.version>
-    <staging-plugin.version>1.6.8</staging-plugin.version>
-    <release-plugin.version>2.5.3</release-plugin.version>
     <commons-lang3.version>3.8.1</commons-lang3.version>
     <commons-config.version>2.3</commons-config.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
     <snakeyaml.version>1.26</snakeyaml.version>
     <sonar.language>java</sonar.language>
-    <jacoco.version>0.8.5</jacoco.version>
+    <compiler-plugin.version>3.8.1</compiler-plugin.version>
+    <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
+    <jacoco-plugin.version>0.8.5</jacoco-plugin.version>
+    <source-plugin.version>3.2.0</source-plugin.version>
+    <javadoc-plugin.version>3.1.1</javadoc-plugin.version>
+    <gpg-plugin.version>1.6</gpg-plugin.version>
+    <staging-plugin.version>1.6.8</staging-plugin.version>
+    <release-plugin.version>2.5.3</release-plugin.version>
     <skipSigning>true</skipSigning>
   </properties>
 
@@ -84,9 +84,9 @@
         <version>${slf4j.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.testng</groupId>
-        <artifactId>testng</artifactId>
-        <version>${testng.version}</version>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
       </dependency>
       <dependency>
         <groupId>com.nordstrom.tools</groupId>
@@ -129,8 +129,8 @@
       <artifactId>slf4j-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.testng</groupId>
-      <artifactId>testng</artifactId>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -155,14 +155,19 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-toolchains-plugin</artifactId>
-          <version>${toolchains-plugin.version}</version>
-        </plugin>
-        <plugin>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
-          <version>${jacoco.version}</version>
+          <version>${jacoco-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${compiler-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${surefire-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -179,52 +184,9 @@
           <artifactId>maven-release-plugin</artifactId>
           <version>${release-plugin.version}</version>
         </plugin>
-        <plugin>
-          <groupId>org.eclipse.m2e</groupId>
-          <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.0</version>
-          <configuration>
-            <lifecycleMappingMetadata>
-              <pluginExecutions>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-toolchains-plugin</artifactId>
-                    <versionRange>[1.0.0,)</versionRange>
-                    <goals>
-                      <goal>toolchain</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <execute />
-                  </action>
-                </pluginExecution>
-              </pluginExecutions>
-            </lifecycleMappingMetadata>
-          </configuration>
-        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-toolchains-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>toolchain</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <toolchains>
-            <jdk>
-              <version>1.7</version>
-              <vendor>oracle</vendor>
-            </jdk>
-          </toolchains>
-        </configuration>
-      </plugin>
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
@@ -245,8 +207,16 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
-        <version>${maven-source-plugin.version}</version>
+        <version>${source-plugin.version}</version>
         <executions>
           <execution>
             <id>attach-sources</id>
