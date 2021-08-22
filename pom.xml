@@ -29,22 +29,22 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>7</maven.compiler.release>
     <logback.version>1.2.3</logback.version>
-    <slf4j.version>1.7.30</slf4j.version>
+    <slf4j.version>1.7.32</slf4j.version>
     <junit.version>4.13.2</junit.version>
-    <java-utils.version>2.0.1</java-utils.version>
+    <java-utils.version>2.0.2</java-utils.version>
     <commons-lang3.version>3.8.1</commons-lang3.version>
     <commons-config.version>2.3</commons-config.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
-    <snakeyaml.version>1.26</snakeyaml.version>
+    <snakeyaml.version>1.28</snakeyaml.version>
     <sonar.language>java</sonar.language>
     <compiler-plugin.version>3.8.1</compiler-plugin.version>
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
-    <jacoco-plugin.version>0.8.5</jacoco-plugin.version>
-    <source-plugin.version>3.2.0</source-plugin.version>
-    <javadoc-plugin.version>3.1.1</javadoc-plugin.version>
-    <gpg-plugin.version>1.6</gpg-plugin.version>
+    <jacoco-plugin.version>0.8.7</jacoco-plugin.version>
+    <source-plugin.version>3.2.1</source-plugin.version>
+    <javadoc-plugin.version>3.3.0</javadoc-plugin.version>
+    <gpg-plugin.version>3.0.1</gpg-plugin.version>
     <staging-plugin.version>1.6.8</staging-plugin.version>
-    <release-plugin.version>2.5.3</release-plugin.version>
+    <release-plugin.version>3.0.0-M4</release-plugin.version>
     <skipSigning>true</skipSigning>
   </properties>
 
