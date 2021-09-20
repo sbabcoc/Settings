@@ -31,7 +31,7 @@
     <logback.version>1.2.3</logback.version>
     <slf4j.version>1.7.32</slf4j.version>
     <junit.version>4.13.2</junit.version>
-    <java-utils.version>2.0.3</java-utils.version>
+    <java-utils.version>2.1.0</java-utils.version>
     <commons-lang3.version>3.8.1</commons-lang3.version>
     <commons-config.version>2.3</commons-config.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
