@@ -215,7 +215,6 @@
         <configuration>
           <jdkToolchain>
             <version>${maven.compiler.release}</version>
-            <vendor>oracle</vendor>
           </jdkToolchain>
         </configuration>
       </plugin>
