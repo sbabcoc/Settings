@@ -118,7 +118,7 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
                     properties = configs.properties(url);
                 } catch (ConfigurationException e) {
                     propagateIfNotMissingFile(e);
-                    logger.warn("Unable to locate configuration at URL '{}'", url);
+                    logger.debug("Optional settings not located at URL '{}'", url);
                 }
             }
         }
@@ -136,7 +136,7 @@ public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends 
                     properties = configs.properties(path);
                 } catch (ConfigurationException e) {
                     propagateIfNotMissingFile(e);
-                    logger.warn("Unable to locate configuration at path '{}'", path);
+                    logger.debug("Optional settings not located at path '{}'", path);
                 }
             }
         }
