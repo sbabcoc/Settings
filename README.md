@@ -33,9 +33,7 @@ Two methods have been provided for you to supply default values for your configu
 
 > **NOTE**: For settings collections with no default values, you can eliminate unnecessary processing in the core API by overriding **`getDefaults`** with a method that simply returns _'null'_.
 
-It can be advantageous to create a hybrid of these two approaches - default values declared in the settings enumeration augmented by scenario-specific values produced by an override of the **`getDefaults`** method. You can see an example of this strategy in the [Selenium Foundation](https://github.com/sbabcoc/Selenium-Foundation) project.
-
-The settings defined in this project include default values that are specific to the target **Selenium** API version:
+It can be advantageous to create a hybrid of these two approaches - default values declared in the settings enumeration augmented by scenario-specific values produced by an override of the **`getDefaults`** method. You can see an example of this strategy in the [Selenium Foundation](https://github.com/sbabcoc/Selenium-Foundation) project. The settings defined in this project include default values that are specific to the target **Selenium** API version:
 
 * [Core Configuration](https://github.com/sbabcoc/Selenium-Foundation/blob/master/src/main/java/com/nordstrom/automation/selenium/AbstractSeleniumConfig.java#L498)
 * [Selenium 2 Specific](https://github.com/sbabcoc/Selenium-Foundation/blob/master/src/selenium2/java/com/nordstrom/automation/selenium/SeleniumConfig.java#L207)
