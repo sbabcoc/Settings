@@ -35,6 +35,12 @@ Two methods have been provided for you to supply default values for your configu
 
 It can be advantageous to create a hybrid of these two approaches - default values declared in the settings enumeration augmented by scenario-specific values produced by an override of the **`getDefaults`** method. You can see an example of this strategy in the [Selenium Foundation](https://github.com/sbabcoc/Selenium-Foundation) project.
 
+The settings defined in this project include default values that are specific to the target **Selenium** API version:
+
+* [Common Configuration](https://github.com/sbabcoc/Selenium-Foundation/blob/master/src/main/java/com/nordstrom/automation/selenium/AbstractSeleniumConfig.java)
+* [Selenium 2 Specifics](https://github.com/sbabcoc/Selenium-Foundation/blob/master/src/selenium2/java/com/nordstrom/automation/selenium/SeleniumConfig.java)
+* [Selenium 3 Specifics](https://github.com/sbabcoc/Selenium-Foundation/blob/master/src/selenium3/java/com/nordstrom/automation/selenium/SeleniumConfig.java)
+
 ### Declaring configuration settings
 
 Implementations of **SettingsCore** supply a context-specific enumeration (which extends **Enum&lt;T&gt;**) to provide the collection of settings needed in this context. This enumeration must implement the **SettingsAPI** interface to provide clients with a common method for retrieving configuration keys and to give the core settings implementation access to the constants and default values of the enumeration.
