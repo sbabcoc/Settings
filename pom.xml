@@ -33,7 +33,7 @@
     <junit.version>4.13.2</junit.version>
     <java-utils.version>3.0.0</java-utils.version>
     <commons-lang3.version>3.12.0</commons-lang3.version>
-    <commons-config.version>2.7</commons-config.version>
+    <commons-config.version>2.8.0</commons-config.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
     <snakeyaml.version>1.30</snakeyaml.version>
     <sonar.language>java</sonar.language>
