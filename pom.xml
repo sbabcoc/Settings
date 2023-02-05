@@ -35,7 +35,7 @@
     <commons-lang3.version>3.12.0</commons-lang3.version>
     <commons-config.version>2.8.0</commons-config.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
-    <snakeyaml.version>1.30</snakeyaml.version>
+    <commons-text.version>1.10.0</commons-text.version>
     <sonar.language>java</sonar.language>
     <compiler-plugin.version>3.10.1</compiler-plugin.version>
     <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
@@ -109,9 +109,9 @@
         <version>${commons-beanutils.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.yaml</groupId>
-        <artifactId>snakeyaml</artifactId>
-        <version>${snakeyaml.version}</version>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-text</artifactId>
+        <version>${commons-text.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -148,6 +148,7 @@
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
