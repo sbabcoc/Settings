@@ -33,7 +33,7 @@
     <junit.version>4.13.2</junit.version>
     <java-utils.version>3.4.1</java-utils.version>
     <commons-config.version>2.12.0</commons-config.version>
-    <commons-beanutils.version>1.10.1</commons-beanutils.version>
+    <commons-beanutils.version>1.11.0</commons-beanutils.version>
     <commons-text.version>1.13.0</commons-text.version>
     <sonar.language>java</sonar.language>
     <compiler-plugin.version>3.10.1</compiler-plugin.version>
