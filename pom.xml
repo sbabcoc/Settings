@@ -28,25 +28,26 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>8</maven.compiler.release>
-    <logback.version>1.3.15</logback.version>
+    <!-- logback 1.3.x is the last Java 8-compatible series; 1.5.x requires JDK 11+ -->
+    <logback.version>1.3.16</logback.version>
     <slf4j.version>2.0.17</slf4j.version>
     <junit.version>4.13.2</junit.version>
-    <java-utils.version>3.4.1</java-utils.version>
-    <commons-config.version>2.12.0</commons-config.version>
+    <java-utils.version>4.0.0</java-utils.version>
+    <commons-config.version>2.13.0</commons-config.version>
     <commons-beanutils.version>1.11.0</commons-beanutils.version>
     <commons-text.version>1.14.0</commons-text.version>
     <sonar.language>java</sonar.language>
     <compiler-plugin.version>3.14.0</compiler-plugin.version>
-    <surefire-plugin.version>3.5.3</surefire-plugin.version>
+    <surefire-plugin.version>3.5.4</surefire-plugin.version>
     <jacoco-plugin.version>0.8.13</jacoco-plugin.version>
     <source-plugin.version>3.3.1</source-plugin.version>
-    <javadoc-plugin.version>3.11.2</javadoc-plugin.version>
+    <javadoc-plugin.version>3.12.0</javadoc-plugin.version>
     <gpg-plugin.version>3.2.8</gpg-plugin.version>
     <staging-plugin.version>1.7.0</staging-plugin.version>
-    <release-plugin.version>3.1.1</release-plugin.version>
+    <release-plugin.version>3.3.1</release-plugin.version>
     <skipSigning>true</skipSigning>
   </properties>
-
+  
   <scm>
     <connection>scm:git:https://github.com/sbabcoc/Settings.git</connection>
     <developerConnection>scm:git:https://github.com/sbabcoc/Settings.git</developerConnection>
@@ -182,8 +183,6 @@
               <goal>sign</goal>
             </goals>
             <configuration>
-              <keyname>${gpg.keyname}</keyname>
-              <passphraseServerId>${gpg.keyname}</passphraseServerId>
               <skip>${skipSigning}</skip>
             </configuration>
           </execution>

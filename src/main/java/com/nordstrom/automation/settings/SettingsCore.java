@@ -69,6 +69,7 @@ import com.nordstrom.common.base.UncheckedThrow;
  */
 public class SettingsCore<T extends Enum<T> & SettingsCore.SettingsAPI> extends CompositeConfiguration {
     
+    /** system property used to specify settings file */
     public static final String PROPS_FILE = "propsFile";
     
     private final Class<T> enumClass;
